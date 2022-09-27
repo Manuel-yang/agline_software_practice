@@ -38,5 +38,9 @@ class Catalogue {
     })
   }
 
+  checkReorder() {
+    
+  }
+
 }
 module.exports = Catalogue;

@@ -110,3 +110,42 @@ else {
 }
 
 
+//================================
+cat = new Catalogue("Test checkReorder");
+console.log('Test checkReorder')
+
+cat.addProduct(p123);
+cat.addProduct(p124);
+cat.addProduct(p125);
+cat.addProduct(p126);
+cat.addProduct(p127);
+cat.addProduct(p128);
+
+size = cat.products.length
+if (size === 6) {
+  console.log("\tInitialization successful")
+}
+else {
+  console.log("\tInitialization fail")
+}
+
+console.log("\tInvoke the checkReorder function and return a empty array because all the items are sufficient")
+matches = cat.checkReorder()
+if(matches === {}) {
+  console.log("\tPassed")
+}
+else console.log("\tFailed")
+
+console.log("\tInvoke the checkReorder function and return the reorder array after modifying the quantity")
+let p1 = cat.findProductById("A124")
+p1.quantityInStock = 8
+let p2 = cat.findProductById("A127")
+p2.quantityInStock = 10
+
+matches = cat.checkReorder()
+
+let result = { type: "Reorder", productIds: ['A124', 'A127'] }
+if (matches == result) {
+  console.log("\tPassed")
+}
+else console.log("\tFailed")
