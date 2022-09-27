@@ -131,7 +131,8 @@ else {
 
 console.log("\tInvoke the checkReorder function and return a empty array because all the items are sufficient")
 matches = cat.checkReorder()
-if(matches === {}) {
+
+if(JSON.stringify(matches) === JSON.stringify({})) {
   console.log("\tPassed")
 }
 else console.log("\tFailed")
@@ -144,8 +145,8 @@ p2.quantityInStock = 10
 
 matches = cat.checkReorder()
 
-let result = { type: "Reorder", productIds: ['A124', 'A127'] }
-if (matches == result) {
+let result = { type: 'Reorder', productIds: [ 'A124', 'A127' ] }
+if (JSON.stringify(matches) === JSON.stringify(result)) {
   console.log("\tPassed")
 }
 else console.log("\tFailed")

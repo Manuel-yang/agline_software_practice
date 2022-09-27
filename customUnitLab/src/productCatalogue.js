@@ -2,6 +2,7 @@ class Catalogue {
   constructor(title) {
     this.title = title;
     this.products = [];
+    this.reOrder = {};
   }
 
   findProductById(id) {
@@ -39,7 +40,16 @@ class Catalogue {
   }
 
   checkReorder() {
-    
+    let productIds = []
+    for(let i = 0; i < this.products.length; i++) {
+      if(this.products[i].quantityInStock <= this.products[i].reorderLevel) {
+        this.reOrder["type"] = "Reorder"
+        productIds.push(this.products[i].id)
+      }
+    }
+
+    if(productIds.length != 0) {this.reOrder["productIds"] = productIds}
+    return this.reOrder
   }
 
 }
