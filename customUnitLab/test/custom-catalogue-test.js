@@ -67,3 +67,46 @@ if (matches.length === 0)
   console.log('\tPassed')
 else
   console.log('\tFailed')
+
+//================================
+cat = new Catalogue("Test removeCatalogue");
+console.log('Test removeProductById')
+
+cat.addProduct(p123);
+cat.addProduct(p124);
+cat.addProduct(p125);
+cat.addProduct(p126);
+cat.addProduct(p127);
+cat.addProduct(p128);
+
+let size = cat.products.length
+if (size === 6) {
+  console.log("\tInitialization successful")
+}
+else {
+  console.log("\tInitialization fail")
+}
+
+
+
+let id = "A1288"
+console.log("\tGiven the catalogue has some products, when we provide a id that doesn't exist, then it returns false")
+matches = cat.removeProductById(id)
+if(matches === false || cat.products.length === size) {
+  console.log("\tPassed")
+}
+else { 
+  console.log("\Failed")
+}
+
+id = "A123"
+console.log("\tGiven the catalogue has some products, when we provide a id that has matches, then it returns true and remove the product")
+matches = cat.removeProductById(id)
+if(matches === true || cat.products.length === size - 1) {
+  console.log("\tPassed")
+}
+else {
+  console.log("\tFailed")
+}
+
+
