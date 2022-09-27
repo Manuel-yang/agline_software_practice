@@ -50,5 +50,22 @@ class Catalogue {
       .reduce((acc, p) => acc + 1, 0);
     return noProductsAdded;
   }
+
+  searchItem(criteria) {
+    if(criteria["price"] != null) {
+      const result = this.products
+      .filter((p) => p.price < criteria["price"])
+      return result
+    }
+    else if(criteria["keyword"] != null) {
+      const result = this.products
+      .filter((p) => p.name.search(criteria["keyword"]) != -1)
+      // return result
+      if(result.length == 0) {
+        throw new Error("Bad search")
+      }
+      else return result
+    }
+  }
 }
 module.exports = Catalogue;

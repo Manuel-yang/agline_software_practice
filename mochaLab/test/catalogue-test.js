@@ -94,5 +94,37 @@ describe("Catalogue", () => {
       let rejectedProduct = cat.findProductById("A126");
       expect(rejectedProduct).to.be.undefined; 
     });
-});
+  });
+
+  describe("search", () => {
+    beforeEach(function () {
+      batch = {
+        type: 'Batch',
+        products: [
+          new Product("A126", "shoes", 100, 10, 30.0),
+          new Product("A127", "shoulder bag", 100, 10, 40.0),
+        ],
+      };
+
+      cat.batchAddProducts(batch);
+    });
+
+    it("should return items which price under 25", () => {
+      const result = cat.searchItem({ price: 25 });
+      expect(result[0].id).to.equal("A123")
+      expect(result[1].id).to.equal("A125")
+      expect(result).to.have.lengthOf(2)
+    });
+
+    it("should return 2 items which name contain sho", () => {
+      const result = cat.searchItem({ keyword: 'sho'})
+      expect(result[0].id).to.equal("A126")
+      expect(result[1].id).to.equal("A127")
+      expect(result).to.have.lengthOf(2)
+    })
+
+    it("should throw an exception when search function doesn't find any product name contain keyword", () => {
+      expect(() => cat.searchItem({ keyword: "Widget" })).to.throw("Bad search")
+    })
+  })
 });
