@@ -41,9 +41,10 @@ class Catalogue {
 
   checkReorder() {
     let productIds = []
+    this.reOrder["type"] = "Reorder"
+    this.reOrder["productIds"] = productIds
     for(let i = 0; i < this.products.length; i++) {
       if(this.products[i].quantityInStock <= this.products[i].reorderLevel) {
-        this.reOrder["type"] = "Reorder"
         productIds.push(this.products[i].id)
       }
     }
